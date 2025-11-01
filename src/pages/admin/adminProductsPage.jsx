@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Loader from "../../components/loader";
+import ProductDeleteButton from "../../components/productDeleteButton";
 
 export default function AdminProductsPage() {
 	const [products, setProducts] = useState([]);
@@ -23,13 +23,13 @@ export default function AdminProductsPage() {
 
 	return (
 		<div
-			className="w-full max-h-full flex justify-center p-10 relative
+			className="w-full flex justify-center p-10 relative
       bg-gradient-to-b from-primary to-white text-secondary"
 		>
 			{loaded ? <table
 				className="w-full max-w-7xl table-auto border-separate border-spacing-0
-        rounded-2xl overflow-hidden shadow-xl bg-white/70 backdrop-blur
-        supports-[backdrop-filter]:bg-white/60"
+        rounded-2xl overflow-hidden shadow-xl bg-white/70 
+        "
 			>
 				<thead className="sticky top-0 z-10">
 					<tr className="bg-secondary text-primary/95">
@@ -106,29 +106,7 @@ export default function AdminProductsPage() {
 								<td className="px-4 py-3 text-sm">
 									{/* placeholder cell for future actions; styled for consistency */}
 									<div className="inline-flex items-center gap-2 ">
-										<button
-											onClick={() => {
-												const token = localStorage.getItem("token");
-												axios
-													.delete(
-														import.meta.env.VITE_BACKEND_URL +
-															"/products/" +
-															item.productID,
-														{
-															headers: {
-																Authorization: `Bearer ${token}`,
-															},
-														}
-													)
-													.then(() => {
-														toast.success("Product deleted successfully");
-                                                        setLoaded(false)
-													});
-											}}
-											className="w-[100px] bg-red-500 flex justify-center items-center text-white p-2 rounded-lg cursor-pointer hover:bg-red-700"
-										>
-											Delete
-										</button>
+										<ProductDeleteButton productId={item.productID} reload={()=>{setLoaded(false)}} />
 									</div>
 								</td>
 							</tr>
