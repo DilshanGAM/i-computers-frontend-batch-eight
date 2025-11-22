@@ -7,25 +7,26 @@ import RegisterPage from "./pages/registerPage";
 import AdminPage from "./pages/adminPage";
 import TestPage from "./pages/test";
 import { Toaster } from "react-hot-toast";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
-
+//1060640670620-7l03reuej93uli7kgkhubosbdbdlqmri.apps.googleusercontent.com
 
 function App() {
 	return (
-
-		<BrowserRouter>
-			<Toaster position="top-right"/>
-			<div className="w-full h-screen bg-primary text-secondary ">
-
-				<Routes path="/">
-					<Route path="/*" element={<HomePage/>} />
-					<Route path="/login" element={<LoginPage/>}/>
-					<Route path="/register" element={<RegisterPage/>}/>
-					<Route path="/admin/*" element={<AdminPage/>}/>
-					<Route path="/test" element={<TestPage/>}/>
-				</Routes>
-			</div>
-		</BrowserRouter>
+		<GoogleOAuthProvider clientId="1060640670620-7l03reuej93uli7kgkhubosbdbdlqmri.apps.googleusercontent.com">
+			<BrowserRouter>
+				<Toaster position="top-right" />
+				<div className="w-full h-screen bg-primary text-secondary ">
+					<Routes path="/">
+						<Route path="/*" element={<HomePage />} />
+						<Route path="/login" element={<LoginPage />} />
+						<Route path="/register" element={<RegisterPage />} />
+						<Route path="/admin/*" element={<AdminPage />} />
+						<Route path="/test" element={<TestPage />} />
+					</Routes>
+				</div>
+			</BrowserRouter>
+		</GoogleOAuthProvider>
 	);
 }
 
