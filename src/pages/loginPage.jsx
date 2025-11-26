@@ -4,6 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { GrGoogle } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../components/loader";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");
